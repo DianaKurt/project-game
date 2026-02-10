@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TicTac — Multiplayer</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">TicTac</div>
+      <div class="right">
+        <div id="meBadge" class="badge hidden"></div>
+        <button id="btnLogout" class="btn btn-ghost hidden">Change name</button>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- Screen: Name -->
+      <section id="screenName" class="card">
+        <h1>Enter your name</h1>
+        <p class="muted">No passwords. Just play.</p>
+        <div class="row">
+          <input id="nameInput" class="input" placeholder="Your name" maxlength="24" />
+          <button id="btnEnter" class="btn">Continue</button>
+        </div>
+        <div class="hint muted">Tip: open in Incognito to test 2 players.</div>
+      </section>
+
+      <!-- Screen: Lobby -->
+      <section id="screenLobby" class="hidden">
+        <div class="grid2">
+          <div class="card">
+            <div class="cardHead">
+              <h2>Lobby</h2>
+              <div class="actions">
+                <button id="btnCreate" class="btn">Create game</button>
+              </div>
+            </div>
+            <div id="gamesList" class="list"></div>
+          </div>
+
+          <div class="card">
+            <h2>Your stats</h2>
+            <div id="statsBox" class="stats"></div>
+            <div class="muted small">Stats are saved on server.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen: Game -->
+      <section id="screenGame" class="hidden">
+        <div class="grid2">
+          <div class="card">
+            <div class="cardHead">
+              <h2 id="gameTitle">Game</h2>
+              <div class="actions">
+                <button id="btnLeave" class="btn btn-ghost">Leave</button>
+              </div>
+            </div>
+
+            <div id="statusLine" class="status"></div>
+            <div id="board" class="board" aria-label="Tic tac toe board"></div>
+
+            <div id="gameFooter" class="muted small"></div>
+          </div>
+
+          <div class="card">
+            <h2>Quick help</h2>
+            <ul class="muted">
+              <li>Moves are validated on the server.</li>
+              <li>Game updates are real-time (Socket.IO).</li>
+              <li>Multiple games can run at once.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast hidden"></div>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
