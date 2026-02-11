@@ -217,8 +217,7 @@ btnCreate.addEventListener("click", () => {
 btnLeave.addEventListener("click", () => {
   if (!state.game) return;
   socket.emit(EVENTS.GAME_LEAVE, { gameId: state.game.id });
-  state.game = null;
-  setScreen(screenLobby);
+
 });
 
 // --- Socket handlers ---
@@ -229,7 +228,12 @@ socket.on(EVENTS.LOBBY_UPDATE, ({ games }) => {
 
 socket.on(EVENTS.GAME_STATE, ({ game }) => {
   state.game = game;
-  setScreen(screenGame);
+
+  if(!game || game.status === "finished"){
+    setScreen(screenLobby);
+  } else {
+    setScreen(screenGame);
+  }
   renderGame();
 });
 
